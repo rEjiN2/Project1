@@ -1,0 +1,40 @@
+<div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">Add Product</h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#"></a></li>
+                  <li class="breadcrumb-item active" aria-current="page">  </li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-description"></p>
+                    <form class="forms-sample" action="/admin/edit-category/{{category._id}}" enctype="multipart/form-data" method="post">
+                      
+                      <div class="form-group">
+                        <label for="exampleInputName1"> Category </label>
+                        <input type="text" class="form-control" name="category" id="exampleInputName1" placeholder="Category" value="{{category.category}}"/>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Sub Category</label>
+                        <input type="text" class="form-control" name="scategory" id="exampleInputName1" placeholder="Category" value="{{category.scategory}}" />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName2">Images</label>
+                        <input type="file" class="form-control" name="catImage1" />
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2"> Add Category</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </div>
+              </div>

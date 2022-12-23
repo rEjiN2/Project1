@@ -1,0 +1,217 @@
+<section style="background-color: #eee;">
+  <div class="container py-5">
+        {{#if user}}
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{this.user.name}}</h5>
+            
+            <p class="text-muted mb-4">{{this.user.address}}</p>
+            
+            <div class="d-flex justify-content-center mb-2">
+                {{!-- Add adress Pop up --}}
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+ Add Adress
+</button> <a href="/edit-user?id={{this.user._id}}" class="btn btn-success">Edit Profile</a>
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Address</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        
+      </div>
+      <div class="modal-body">
+        
+        <form class="forms-sample" action="/addAddress/{{this.user._id}}" method="post">
+                      
+                      <div class="form-group">
+                        <label for="exampleInputName1"> Address </label>
+                        <input type="text" class="form-control" name="address" id="exampleInputName1"/>
+                      </div>
+                      
+                      <button type="submit" class="btn btn-primary mr-2">Add Address</button>
+
+                     
+                      
+                    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+              
+              {{!-- pop up end --}}
+
+              
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fas fa-globe fa-lg text-warning"></i>
+                <p class="mb-0">https://mdbootstrap.com</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                <p class="mb-0">mdbootstrap</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                <p class="mb-0">@mdbootstrap</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                <p class="mb-0">mdbootstrap</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                <p class="mb-0">mdbootstrap</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+       {{/if}}
+
+       {{#if user}}
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"> {{user.name}} &nbsp;{{user.lname}}</p>
+              </div>
+            </div>
+           
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user.email}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user.number}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mobile</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user.number}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user.address}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/if}}
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <p class="mb-4"><span class="text-primary font-italic me-1">Orders</span> Order Status
+                </p>
+                 
+            <table class="table">
+  <thead>
+    <tr>
+      <th>Address</th>
+						<th>Order Date</th>						
+                        <th>Status</th>						
+						<th> Amount</th>
+                        
+						<th>Products</th>
+						<th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   {{#each order}}
+                    <tr>
+                        
+                        {{!-- <td>{{../user.name}} </td> --}}
+						<td>{{this.deliveryDetails.adress}}</td>
+
+                        <td>{{this.date}}</td>                        
+						<td><span class="status text-success">&bull;</span> {{this.status}}</td>
+						<td>{{this.totalAmount}}</td>
+                        
+						<td>
+							<a href="/viewOrderProducts?id={{this._id}}" class="btn btn-primary">View</a>
+						</td>
+						<td>
+              {{#if this.cancelled}}
+
+              {{else}}
+							<a href="/editAddress?id={{this._id}}" class="btn btn-success"> Edit Address</a>
+              {{/if}}
+
+					</td>
+                    </tr>
+					{{/each}}
+  </tbody>
+</table>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- <script>
+  function editAddress(cartId,address){
+    console.log(cartId,address)
+    $.ajax({
+      url:'/addressEditOrder',
+      data:{
+        
+        cart:cartId,
+       address=address
+       
+      },
+      method:'post',
+      success:(response)=>{
+          alert("Kidu")
+          location.reload()
+        }
+      }
+    )
+  } 
+</script> --}}

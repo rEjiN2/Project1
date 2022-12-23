@@ -1,0 +1,42 @@
+<div class="checkout_area section-padding-80">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-md-6">
+                    <div class="checkout_details_area mt-50 clearfix">
+
+                        <div class="cart-page-heading mb-30">
+                            <h5>Edit Delivery  Address</h5>
+                        </div>
+
+                        <form action="/addressEditOrder?id={{order._id}}" method="post">
+                           
+                                <div class="col-12 mb-3">
+                                    <label for="street_address">Address <span>*</span></label>
+                                    <input type="text" class="form-control mb-3" name="add1" id="street_address" value="{{order.deliveryDetails.adress}}">
+                                    
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="postcode">Postcode <span>*</span></label>
+                                    <input type="text" class="form-control" name="pincode" id="postcode" value="{{order.deliveryDetails.pincode}}">
+                                </div>
+                                
+                                <div class="col-12 mb-3">
+                                    <label for="phone_number">Phone No <span>*</span></label>
+                                    <input type="number" class="form-control" name="number" id="phone_number" min="0" value="{{order.deliveryDetails.mobile}}">
+                                </div>
+                               
+                                
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary  mb-4"  >
+                Edit Address
+              </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>

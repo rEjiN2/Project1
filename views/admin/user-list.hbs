@@ -1,0 +1,47 @@
+ <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">User List</h4>
+                    <span>
+                    <a href="/admin/add-user" class="btn btn-info" > Add User
+                    </a></span>
+                    <div class="table-responsive">
+    <table class="table mt-5">
+                        <thead>
+                          <tr>
+                            
+                            <th> Name</th>
+                            <th>Email</th>
+                            
+                            <th>Options</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{#each user}}
+                          <tr>
+                            <td>{{this.name}}</td>
+                            <td>{{this.email}}</td>
+                            <td> {{#if isblocked}}
+          <a href="/admin/unBlockUser?id={{this._id}}" class="btn btn-success" onclick="return confirm('are you sure to block {{this.email}}'')">UNBLOCK</a>
+          {{else}}
+         <a href="/admin/blockUser?id={{this._id}}" class="btn btn-danger" onclick="return confirm('are you sure to block {{this.email}}'')">BLOCK</a>
+         {{/if}}</td>
+                          </tr>
+                         {{/each}}
+                        </tbody>
+                      </table>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </div>
+
+                      
+
+
+    
+

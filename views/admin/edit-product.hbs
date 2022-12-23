@@ -1,0 +1,73 @@
+<div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">Edit Product</h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#"></a></li>
+                  <li class="breadcrumb-item active" aria-current="page">  </li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-description"></p>
+                    <form class="forms-sample" action="/admin/edit-product?id={{product._id}}" enctype="multipart/form-data" method="post">
+                      <div class="form-group">
+                        <label for="exampleInputName1">Title</label>
+                        <input type="text" class="form-control" name="title" id="exampleInputName1" placeholder="Name" value="{{product.title}}" />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Category</label>
+                        <input type="text" class="form-control" name="category" id="exampleInputName1" placeholder="Category" value="{{product.category}}" />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Brand</label>
+                        <input type="text" class="form-control" name="brand" id="exampleInputName1" placeholder="Brand" value="{{product.brand}}" />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPrice">Price</label>
+                        <input type="number" class="form-control" name="price" id="exampleInputPrice" placeholder="Price" value="{{product.price}}" />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleSelectGender">Gender</label>
+                        <select class="form-control" id="exampleSelectGender"  name="gender" value="{{product.gender}}" >
+                          <option  >Male</option>
+                          <option  >Female</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                        <label>Image upload</label>
+                        {{!-- <img src="/pro-images/{{product._id}}.png"  alt="" style="height: 50px; width:50px;" id="imgView"> --}}
+                        <input value="/pro-images/{{product._id}}.png" class="form-control form-control-lg" name="image" type="file" multiple onchange="viewImage(event)" >
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPrice">Stocks</label>
+                        <input type="number" class="form-control" name="stock" id="exampleInputStock"  value="{{product.stock}}" />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleTextarea1">Description</label>
+                        <textarea
+                          class="form-control"
+                          id="exampleTextarea1"
+                          rows="4" name="description"
+                        >{{product.description}}</textarea>
+                      </div>
+                      
+                      <button type="submit" class="btn btn-primary mr-2"> Edit</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </div>
+              </div>
+              <script>
+                function viewImage(event){
+                  document.getElementById('imgView').src=URL.createobjectURL(event.target.files[0])
+                }
+              </script>

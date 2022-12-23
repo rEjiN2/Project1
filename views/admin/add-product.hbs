@@ -1,0 +1,72 @@
+<div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">Add Product</h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#"></a></li>
+                  <li class="breadcrumb-item active" aria-current="page">  </li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-description"></p>
+                    <form class="forms-sample" action="/admin/add-product" enctype="multipart/form-data" method="post">
+                      <div class="form-group">
+                        <label for="exampleInputName1">Title</label>
+                        <input type="text" class="form-control" name="title" id="exampleInputName1" placeholder="Name" />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleSelectGender">Category</label>
+                        <select class="form-control" id="exampleSelectGender"  name="category">
+                          {{#each category}}
+                          <option  >{{this.category}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Brand</label>
+                        <input type="text" class="form-control" name="brand" id="exampleInputName1" placeholder="Brand" />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPrice">Price</label>
+                        <input type="number" class="form-control" name="price" id="exampleInputPrice" placeholder="Price" />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleSelectGender">Gender</label>
+                        <select class="form-control" id="exampleSelectGender"  name="gender">
+                          <option  >Male</option>
+                          <option  >Female</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                        <label>File upload</label>
+                        <label for="formFileLg" class="form-label"></label>
+                        <input class="form-control form-control-lg" name="image" multiple  id="formFileLg" type="file" />
+                        {{!-- <input class="form-control form-control-lg" name="image1"  id="formFileLg" type="file" /> --}}
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleTextarea1">Description</label>
+                        <textarea
+                          class="form-control"
+                          id="exampleTextarea1"
+                          rows="4" name="description"
+                        ></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPrice">Stocks</label>
+                        <input type="number" class="form-control" name="stock" id="exampleInputStock"  />
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2"> Add product</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </div>
+              </div>

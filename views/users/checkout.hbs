@@ -1,0 +1,344 @@
+ <div class="breadcumb_area bg-img mt-5" style="background-image: url(../User/img/bg-img/breadcumb.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="page-title text-center">
+                        <h2>Checkout</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Checkout Area Start ##### -->
+    <div class="checkout_area section-padding-80">
+        <div class="container">
+            <div class="row">
+
+                <div class=" col-md-12">
+                    <div class="checkout_details_area mt-50 clearfix">
+
+                        <div class="cart-page-heading mb-30">
+                            <h5>Billing Address</h5>
+                        </div>
+
+                        <form  id="checkoutForm" action="/placeOrder" method="post" >
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-outline">
+                                    <label for="first_name">First Name <span>*</span></label>
+                                    <input type="text" class="form-control" name="name" id="first_name" value="" required>
+                                    </div>
+                                <div class="form-outline">
+                                    <label for="last_name">Last Name <span>*</span></label>
+                                    <input type="text" class="form-control" name="lname" id="last_name" value="" required>
+                                </div>
+                                <div class="form-outline">
+                                    <label for="company">Company Name</label>
+                                    <input type="text" class="form-control" name="cname" id="company" value="">
+                                </div>
+                                <div class="form-outline">
+                                    <label for="country">Country <span>*</span></label>
+                                    <select class="w-100" id="country" name="country">
+                                        <option value="usa">United States</option>
+                                        <option value="uk">United Kingdom</option>
+                                        <option value="ger">Germany</option>
+                                        <option value="fra">France</option>
+                                        <option value="ind">India</option>
+                                        <option value="aus">Australia</option>
+                                        <option value="bra">Brazil</option>
+                                        <option value="cana">Canada</option>
+                                    </select>
+                                </div>
+                                <div class="form-outline">
+                                    <label for="street_address">Address <span>*</span></label>
+
+                                    <input type="text" class="form-control mb-3" name="add1" id="street_address" value="{{user.address}}">
+                                   
+                                </div>
+                                <div class="form-outline">
+                                    <label for="postcode">Pincode <span>*</span></label>
+                                    <input type="text" class="form-control" name="pincode" id="postcode" value="">
+                                </div>
+                                <div class="form-outline">
+                                    <label for="city">Town/City <span>*</span></label>
+                                    <input type="text" class="form-control" name="city" id="city" value="">
+                                </div>
+                                <div class="form-outline">
+                                    <label for="state">Province <span>*</span></label>
+                                    <input type="text" class="form-control" name="provinence" id="state" value="">
+                                </div>
+                                <div class="form-outline">
+                                    <label for="phone_number">Phone No <span>*</span></label>
+                                    <input type="number" class="form-control" name="number" id="phone_number"  value="">
+                                </div>
+                                <div class="form-outline">
+                                    
+                                    <input  class="form-control" name="userId" id="phone_number"  value="{{user._id}}" hidden>
+                                </div>
+                                <div class="form-outline">
+                                    <label for="email_address">Email Address <span>*</span></label>
+                                    <input type="email" class="form-control" name="email" id="email_address" value="">
+                                </div>
+                             </div>
+                            
+                                <div class="col-md-6 ">
+                    <div class="order-details-confirmation">
+
+                        <div class="cart-page-heading">
+                            <h5>Your Order</h5>
+                            <p>The Details</p>
+                        </div>
+                         <ul class="order-details-form mb-4">
+                            <li><span>Product</span><span>Quantity</span> <span>Total</span></li>
+                           {{#each products}}
+                            <li><span>{{this.product.title}}</span><span>{{this.quantity}}</span> <span>₹ {{this.product.price}}</span></li>
+                            {{/each}}
+                            <li><span>Coupon</span>&nbsp;<span><input type="text" id="couponName" name = "coupon" class="form-control form-control-lg"/></span>&nbsp;<button class="flex-c-m stext-101 size-118 bg8 bor13 hov-btn3 trans-04 pointer btn btn-info  " id="applyCouponBtn" onclick="applyCoupon(event)">Apply Coupon</button></li>
+                           
+                            <li><span>Subtotal</span> <span id="total">₹ {{total}}</span></li>
+                            <li><span>Shipping</span> <span>Free Delivery</span></li>
+                            <li><span>Total</span> <span id="totalItem">₹ {{total}}</span></li>
+                        </ul>
+
+                        <div id="accordion" role="tablist" class="mb-4">
+                           <div class=" d-block mb-2">
+                                        <input type="radio" name="paymentMethod" value="COD" >
+                                        <label >C.O.D</label>
+                                    </div>
+                                    <div class=" d-block mb-2">
+                                        <input type="radio" name="paymentMethod" value="RAZORPAY" >
+                                        <label >RazorPay</label>
+                                    </div>
+                                     <div class=" d-block mb-2">
+                                        <input type="radio" name="paymentMethod" value="PAYPAL" >
+                                        <label >PayPal</label>
+                                    </div>
+                                    <div class=" d-block mb-2">
+                                        <input type="radio" name="paymentMethod" value="DEBITPAY" >
+                                        <label >Credit/Debit Pay</label>
+                                    </div>
+                                    <div class=" d-block mb-2">
+                                        <input type="radio" name="paymentMethod" value="PAYLATER" >
+                                        <label >PayLater</label>
+                                    </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary  mb-4"  >
+                Place Order
+              </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                            </div>
+ </form>
+                    </div>
+                </div>
+
+  <script>
+    $("#checkoutForm").submit((e)=>{
+console.log('chackoutform')
+        e.preventDefault()
+        $.ajax({
+            url:'/placeOrder',
+            method:'post',
+            data:$('#checkoutForm').serialize(),
+            success:(response)=>{
+                console.log(response)
+                alert(response)
+                if(response.codSuccess){
+                    console.log(response.products,'Order Product aada Kutta')
+                    $.ajax({
+							url: '/order-stock',
+
+							data: {
+								products: JSON.stringify(response.products)
+							},
+							method: 'post',
+							success: (response) => {
+								if (response.stockDecrease) {
+									location.href='/ordersuccess'
+								}
+
+
+							}
+						})
+                    
+                }
+                else if(response.payLaterSuccess){
+                    location.href='/ordersuccess'
+                }else if (response.paypalSuccess) {
+                    
+                    console.log(response.products,'Order Product aada Kutta')
+						console.log('checking.inner...')
+                        $.ajax({
+							url: '/order-stock',
+
+							data: {
+								products: JSON.stringify(response.products)
+							},
+							method: 'post',
+							success: (response) => {
+                              
+                                }
+						})
+                          location.replace(response.linkto)
+						
+					}
+                else{
+                    console.log("Vada Kutta")
+                    razorpayPayment(response.order,response.products)
+                }
+            }
+        })
+    })
+    function razorpayPayment(order,products){
+        var options = {
+    "key": "rzp_test_ryUqb1WgOYS97A", // Enter the Key ID generated from the Dashboard
+    "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Esscence",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        {{!-- alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature) --}}
+
+        verifyPayment(response,order,products)
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+    function verifyPayment(payment,order,products){
+    $.ajax({
+        url:'/verifyPayment',
+        data:{
+            payment,
+            order,
+            products: JSON.stringify(products)
+        },
+        method:'post',
+        success:(response)=>{
+            if (response.stockDecrease) {
+						 location.href='/ordersuccess'
+					}
+					else {
+						alert('Payment Failed')
+					}
+        }
+    })
+    }
+  </script>
+
+  <script>
+  
+  function applyCoupon(event){
+  event.preventDefault()
+  let coupon=document.getElementById('couponName').value;
+ 
+  $.ajax({
+    
+    url: '/applyCoupon',
+    data: {
+      coupon
+    },
+    method: 'post',
+    success:(response)=>{
+      if(response.verify){
+        console.log("hey hey hey")
+       // document.getElementById('discount').innerHTML="₹ "+response.discountAmount
+        document.getElementById('totalItem').innerHTML= "₹ "+response.amount
+        document.getElementById('total').innerHTML= "₹ "+response.amount
+      //  document.getElementById('percentage').innerHTML=response.couponData.couponPercentage+'%'
+        //document.getElementById('error').innerHTML = ''
+       // document.getElementById('error2').innerHTML = '(Coupon has Applied)'
+        document.getElementById("applyCouponBtn").hidden = true;
+        //document.getElementById('deleteCouponBtn').hidden=false;
+      }
+      else{
+          console.log("hoy hoy hohy")
+      //  document.getElementById('discount').innerHTML= "₹ " +0
+        document.getElementById('total').innerHTML= "₹ "+response.Total
+        document.getElementById('totalItem').innerHTML= "₹"+response.Total
+     //   document.getElementById('percentage').innerHTML= 0 + "%"
+
+        if(response.used){
+        
+          document.getElementById('error2').innerHTML=response.used;
+        }
+        else if(response.minAmount){
+          document.getElementById('error').innerHTML = response.minAmountMsg;
+        }
+        else if(response.maxAmount){
+          document.getElementById('error').innerHTML = response.maxAmountMsg
+        }
+        else if(response.invalidDate){
+          document.getElementById('error').innerHTML = response.invalidDateMsg
+        }
+        else if(response.invalidCoupon){
+          document.getElementById('error').innerHTML = response.invalidCouponMsg
+        }
+        else if(response.noCoupon){
+          document.getElementById('error').innerHTML = 'Invalid Coupon Details'
+        }
+      }
+    }
+    
+  
+
+});
+}
+
+
+function removeCoupon(event){
+  event.preventDefault();
+  let coupon=document.getElementById('couponName').value;
+
+  $.ajax({
+    
+    url: '/removeCoupon',
+    data: {
+      coupon
+    },
+    method: 'post',
+    success:(response)=>{
+      swal({
+        title: "Coupon Deleted!",
+        text: "You have removed the coupon!",
+        icon: "success",
+        button: "OK!",
+    }).then(() => {
+        document.getElementById('percentage').innerHTML=0+'%'
+        document.getElementById('discount').innerHTML=0
+        document.getElementById('error2').innerHTML = ''
+        document.getElementById('couponName').value = ''
+
+        // document.getElementById('couponName').value = ""
+        document.getElementById("applyCouponBtn").hidden = false
+        document.getElementById("deleteCouponBtn").hidden = true
+        document.getElementById("error").innerHTML = ""
+        document.getElementById('totall').innerHTML='₹ '+response.totalAmount
+    })
+    }
+    });
+}
+</script>
+  

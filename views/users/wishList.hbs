@@ -1,0 +1,99 @@
+ <section class="h-100 h-custom mt-5" style="background-color: #d2c9ff;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-8">
+                <div class="p-5">
+                  <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h1 class="fw-bold mb-0 text-black">Wish List</h1>
+                    <h6 class="mb-0 text-muted"></h6>
+                  </div>
+                  
+                    {{#each products}}
+                   
+                    <hr class="my-4">
+                  <div class="row mb-4 d-flex justify-content-between align-items-center">
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <img  src="/pro-images/{{this.product.image.[0]}}" alt="">
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                      <h6 class=""></h6>
+                      <h6 class="text-black mb-0">{{this.name}}</h6>
+                    </div>
+                  <div class="col-md-3 col-lg-3 col-xl-3">
+                      <h6 class=""></h6>
+                      <h6 class="text-black mb-0">₹{{this.price}}</h6>
+                    </div>
+                    
+                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                      <h6 class="mb-0">{{this.category}}</h6>
+                      
+                    </div>
+                    
+                    <div class="col-md-1 col-lg-1 col-xl-1 ">
+                      <button onclick="addToCart('{{this.product._id}}')" class="btn btn-success">Add to Cart</button>
+                      <a href="/removeWish?id={{this._id}}" class="btn btn-danger mt-2 ml-3 ">Remove</a>
+                    </div>
+                    
+                  </div>
+                  {{!-- <div class="col-lg-4 bg-grey">
+                <div class="p-5">
+                  <a href="/removeWish?id={{this._id}}" class="btn btn-danger mt-2 ">Remove</a></span>
+                  </div>
+                  </div> --}}
+
+
+                        {{/each}}
+
+                  <hr class="my-4">
+
+                  <div class="pt-5">
+                    <h6 class="mb-0"><a href="#!" class="text-body"><i
+                          class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+  function changeQuantity(cartId,proId,userId,count){
+    console.log(cartId,proId,count)
+    let quantity = parseInt(document.getElementById(proId).innerHTML)
+    console.log(quantity)
+    count = parseInt(count)
+    $.ajax({
+      url:'/changeProductQuantity',
+      data:{
+        user:userId,
+        cart:cartId,
+        product:proId,
+        count:count,
+        quantity:quantity,
+      },
+      method:'post',
+      success:(response)=>{
+        if(response.removeProduct){
+          alert("Product Removed ")
+          location.reload()
+        }else{
+          document.getElementById(proId).innerHTML=quantity+count
+          document.getElementById('total').innerHTML=response.total
+          document.getElementById('totalItem').innerHTML=response.total
+        }
+      }
+    })
+  } 
+</script>

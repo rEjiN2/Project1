@@ -1,0 +1,211 @@
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start mt-5">
+  <style>
+    .cascading-right {
+      margin-right: -50px;
+    }
+
+    @media (max-width: 991.98px) {
+      .cascading-right {
+        margin-right: 0;
+      }
+    }
+  </style>
+
+  <!-- Jumbotron -->
+  <div class="container py-4">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card cascading-right" style="
+            background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);
+            ">
+          <div class="card-body p-5 shadow-5 text-center">
+            <h2 class="fw-bold mb-5">Sign up now</h2>
+            <form action="/signup" method="post">
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" name="name" id="contact-name"  class="form-control" onkeyup="validateName()" />
+                    <label class="form-label"  for="form3Example1">First name</label>
+                    <b><span class="formerror" id="name-error"></span></b>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" name="lname"  class="form-control" id="contact-name" onkeyup="validateName()" />
+                    <label class="form-label"  for="form3Example2">Last name</label>
+                    <b><span class="formerror" id="name-error"></span></b>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input type="email" name="email"  class="form-control" id="contact-email"  onkeyup="validateEmail()" />
+                <label class="form-label"  for="form3Example3">Email address</label>
+                <b><span class="formerror" id="email-error"></span></b>
+              </div>
+
+              
+               
+               <!-- Number input -->
+              <div class="form-outline mb-4">
+                <input type="number" name="number"  class="form-control"  id="contact-phone"  onkeyup="validatePhone()" />
+                <label class="form-label"  for="form3Example3">Mobile number</label>
+                <b><span class="formerror" id="phone-error"></span></b> 
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" name="password"  class="form-control" id="contact-password" onkeyup="validatePassword()" />
+                <label class="form-label"  for="form3Example4">Password</label>
+                <b><span class="formerror" id="password-error"></span></b>
+
+              </div>
+
+              
+
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block mb-4" id="contact-submit"  onclick='return validateForm()'>
+                Sign up
+              </button>
+              <b><span class="formerror" id="submit-error"></span></b>
+
+              <!-- Register buttons -->
+              <div class="text-center">
+                
+               <a href="/login"> <button type="button" class="btn btn-link btn-floating mx-1">
+                  Already have an account
+                </button></a>
+
+                
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded-4 shadow-4"
+          alt="" />
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+<script>
+  var nameError = document.getElementById('name-error');
+var phoneError = document.getElementById('phone-error');
+var emailError = document.getElementById('email-error');
+var passwordError = document.getElementById('password-error');
+var submitError = document.getElementById('submit-error');
+
+
+
+function validateName(){
+    var name = document.getElementById('contact-name').value;
+
+    if(name.length == 0){
+
+        nameError.innerHTML = 'Name is required';
+        return false;
+
+    }
+
+    if(!name.match(/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/)){
+
+        nameError.innerHTML = 'Invalid name';
+        return false;
+    }
+    else{
+    nameError.innerHTML = '' ;
+    return true ;
+    }
+}
+
+function validatePhone(){
+    var phone = document.getElementById('contact-phone').value;
+
+
+    // if (let .value = /^\d+$/.test(val)){
+    //     phoneError.innerHTML = 'Only digits please';
+    //     return false
+    //     }
+   
+    if(phone.length == 0){
+        phoneError.innerHTML = 'Phone No. is required';
+        return false;
+    }
+
+    if(phone.length !== 10){
+
+        phoneError.innerHTML = 'Ph No. should be ten digits'
+        return false;
+    }
+    
+    if(phone.match(/^[789]\{9}$/)){
+        phoneError.innerHTML = 'Only digits please';
+        return false;
+    }
+
+    
+   
+
+        phoneError.innerHTML = '';
+        return true;
+    
+
+}
+
+function validateEmail(){
+
+    var email = document.getElementById('contact-email').value;
+
+    if(email.length == 0){
+        emailError.innerHTML = 'Email is required'
+        return false;
+    }
+
+    if(!email.match(/^[a-zA-Z0-9.!#$%&’+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/)){
+
+        emailError.innerHTML = 'Email Invalid'
+        return false;
+
+    }
+
+    emailError.innerHTML = '';
+    return true;
+}
+
+function validatePassword(){
+
+    var password = document.getElementById('contact-password').value;
+
+    if(password.length==0){
+        passwordError.innerHTML='Password is required'
+        return false;
+    }
+     var required = 8 ;
+     var left = required - password.length;
+
+     if(left>0){
+         passwordError.innerHTML = left + ' Strong password required';
+         return false;
+     }
+
+    passwordError.innerHTML = '';
+    return true
+
+}
+function validateForm(){
+    if(!validateName() || !validatePhone() || !validateEmail() || !validatePassword() ){
+        submitError.style.direction = 'block';
+        submitError.innerHTML = 'Please Fix the errors to submit'
+        setTimeout(function(){submitError.style.display = 'none ';} , 3000)
+        return false;
+    }
+}
+</script>

@@ -1,0 +1,59 @@
+<section class="vh-100 mt-5">
+  <div class="container py-5 h-100 mt-5">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://fedfina.com/site/templates/images/OTP.png"
+          class="img-fluid" alt="Phone image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form action="/otpLogin" method="post">
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="number" id="form1Example13" name="Mnumber" value="{{this.number}}" class="form-control form-control-lg" />
+            <label class="form-label" for="form1Example13">Mobile number </label>
+          </div>
+          
+          <!-- Password input -->
+          {{!-- <div class="form-outline mb-4">
+            <input type="number" id="form1Example23" name="code" class="form-control form-control-lg" />
+            <label class="form-label" for="form1Example23">Code</label>
+          </div> --}}
+
+          <div class="d-flex justify-content-around align-items-center mb-4">
+            
+            
+            <!-- Checkbox -->
+                <div class="form-check">
+                <label class="form-check-label" for="form1Example3"></label>
+                </div>
+                <a href="#!">Resend Otp</a>
+                </div>
+
+          <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Get Verification Code</button>
+
+          {{!-- {{#if loginErr}}
+                <p class="error" style="color: red;">Invalid Credentials</p> 
+
+                 {{/if}}
+                 {{#if blocked}}
+                 <p class="error" style="color: red;">{{blocked}}</p> 
+
+                 {{/if}}
+            
+          <div class="divider d-flex align-items-center my-4">
+           <p> <a href="/otpLogin" class="text-center fw-bold  mb-0 " style="color: blue;">Login With OTP</a></p>
+              
+          </div> --}}
+
+          <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="/signup"
+            role="button">
+            Not Yet Registered???? <br> Register Now !!
+          </a>
+          
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

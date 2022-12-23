@@ -1,0 +1,105 @@
+<div class="container-fluid " style="height: 100%;">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-4">
+						<h2>Products <b></b></h2>
+					</div>
+				
+                </div>
+            </div>
+			
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        {{!-- <th>Customer</th> --}}
+						<th>No</th>
+						<th>Item</th>						
+                        <th>Quantity</th>
+                        <th>Image</th>						
+						<th> Amount</th>
+                        <th>status</th>
+						<th>Action</th>
+                     
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                    <tr>
+                        <td>{{@index}}</td>
+                        {{!-- <td>{{../user.name}} </td> --}}
+						<td>{{this.product.title}}</td>
+
+                        <td>{{this.quantity}}</td>                        
+						<td> <img src="/pro-images/{{product.image.[0]}}"  class="img-fluid rounded-3" style="width:50px ; height:50px ;" alt="Cotton T-shirt"></td>
+						<td>{{this.product.price}}</td>
+                        <td>{{this.status}}</td>
+                        <td>
+							{{!-- {{#if this.delivered}}
+                            
+                            
+<button class="button-24" onclick="returnOrder('Returned','{{this._id}}','{{this.item}}','{{this.product.price}}','{{this.quantity}}')">Return</button>
+                            
+                            
+                             {{else}}
+<button class="button-24"
+								onclick="setOrderedProductStatus('cancel','{{this._id}}','{{this.item}}')">CANCEL</button>
+
+                            {{/if}} --}}
+                            
+                            
+                            {{#ifEquals this.status 'placed'}}
+							<button class="button-24" onclick="setOrderedProductStatus('cancel','{{this._id}}','{{this.item}}')">CANCEL</button>
+							{{/ifEquals }}
+							{{#ifEquals this.status 'cancel'}}
+							<p>Cancelled</p>
+							{{/ifEquals }}
+							{{#ifEquals this.status 'Delivered'}}
+							<button class="button-24"
+								onclick="returnOrder('Returned','{{this._id}}','{{this.item}}','{{this.product.price}}','{{this.quantity}}')">Return
+								Order</button>
+							{{/ifEquals}}
+							{{#ifEquals this.status 'shipped'}}
+							<p>Product Shipped</p>
+							{{/ifEquals }}
+                            {{!-- <button class="button-24"
+								onclick="setOrderedProductStatus('cancel','{{this._id}}','{{this.item}}')">CANCEL</button>
+                                  --}}
+						</td>
+
+
+                      
+                           
+							
+							
+					
+                    </tr>
+					{{/each}}
+                </tbody>
+            </table>
+			
+        </div>
+    </div>
+    <script >
+
+		function setOrderedProductStatus(value, orderId, productId) {
+			console.log(value);
+			console.log(orderId);
+			console.log(productId);
+			$.ajax({
+				url: '/userOrderedProductsStatus',
+				method: 'post',
+				data: {
+					status: value,
+					orderId: orderId,
+					productId: productId,
+
+				},
+				success: (response) => {
+					
+					location.reload();
+				}
+			})
+		}
+	</script>
