@@ -98,4 +98,3 @@ router.get('/salesReport',verifyAdmin,salesReport)
 router.post('/admin-dailysales',AdminDailySalesReport)
 router.post('/admin-monthlySales',adminMonthlySalesReport)
 module.exports = router;
-// hhhhhg
