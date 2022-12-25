@@ -429,53 +429,55 @@ catch{
       console.log(err.message);
       return res.status(500).json({message:"Something went wrong"})
     }
-    }, otpLogin:(req,res)=>{
-      res.render('users/otpLogin')
-    },
-    let :signupData=0,
-    confirmOtp:(req,res)=>{
-      try{
-      userHelpers.doOTP(req.body).then((response)=>{
-        if(response.status){
-          signupData=response.user;
-          mobNumber=response.mob;
-          console.log(signupData);
-          // console.log(mobNumber);
-          res.redirect('/confirmOtp')
-        }
-        else{
-          res.redirect('/otpLogin')
-        }
-      })
-    }catch{
-      console.log(error.message);
-      return res.status(500).json({message:"Something went wrong"})
-    }
-    },
-    checkOtp:(req,res)=>{
-      res.render('users/confirmOtp',)
+     },
+    // otpLogin:(req,res)=>{
+    //   res.render('users/otpLogin')
+    // },
+    // let :signupData=0,
+    // confirmOtp:(req,res)=>{
+    //   try{
+    //   userHelpers.doOTP(req.body).then((response)=>{
+    //     if(response.status){
+    //       signupData=response.user;
+    //       mobNumber=response.mob;
+    //       console.log(signupData);
+    //       // console.log(mobNumber);
+    //       res.redirect('/confirmOtp')
+    //     }
+    //     else{
+    //       res.redirect('/otpLogin')
+    //     }
+    //   })
+    // }catch{
+    //   console.log(error.message);
+    //   return res.status(500).json({message:"Something went wrong"})
+    // }
+    // },
+    // checkOtp:(req,res)=>{
+    //   res.render('users/confirmOtp',)
     
-    },
-    postConfirmOtp:(req,res)=>{
-      try{
+    // },
+    // postConfirmOtp:(req,res)=>{
+    //   try{
     
-      userHelpers.doOtpConfirm(req.body,signupData).then((response)=>{
-        if(response.status){
+    //   userHelpers.doOtpConfirm(req.body,signupData).then((response)=>{
+    //     if(response.status){
           
-          req.session.loggedIn=true;
+    //       req.session.loggedIn=true;
           
-          req.session.user = signupData;
-          res.redirect('/')
-        }
-        else{
-          res.redirect('/confirmOtp')
-        }
-      })
-    }catch{
-      console.log(err.message);
-      return res.status(500).json({message:"Something went wrong"})
-    }
-    },
+    //       req.session.user = signupData;
+    //       res.redirect('/')
+    //     }
+    //     else{
+    //       res.redirect('/confirmOtp')
+    //     }
+    //   })
+    // }catch{
+    //   console.log(err.message);
+    //   return res.status(500).json({message:"Something went wrong"})
+    // }
+    // },
+    
     
     UserProfile:async(req,res)=>{
       try{

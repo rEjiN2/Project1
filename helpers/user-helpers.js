@@ -1,10 +1,10 @@
 const collection = require('../config/collection');
 var db = require('../config/connection');
 // const OTP = require('../config/OTP')
-require('dotenv').config();
+//require('dotenv').config();
 const bcrypt = require('bcrypt');
-const { response } = require('express');
-const client = require('twilio')(process.env.accoountSID,process.env.authToken)
+
+// const client = require('twilio')(process.env.accoountSID,process.env.authToken)
 var objectId = require('mongodb').ObjectId
 var moment = require('moment')
 const Razorpay = require('razorpay');
@@ -466,55 +466,56 @@ instance.orders.create(options, function(err, order) {
                 })
            }
            ,
-           doOTP:(userData)=>{
-            let response={}
-             return new Promise(async(resolve,reject)=>{
-              let user=await db.get().collection(collection.USER_COLLECTION).findOne({number:userData.Mnumber})
-              console.log(user);
-              if(user){
+    //        doOTP:(userData)=>{
+    //         let response={}
+    //          return new Promise(async(resolve,reject)=>{
+    //           let user=await db.get().collection(collection.USER_COLLECTION).findOne({number:userData.Mnumber})
+    //           console.log(user);
+    //           if(user){
       
-                response.status=true
-                response.mob=userData.Mnumber;
-                response.user=user
-                console.log("11111111111111")
-                client.verify.services(process.env.ServiceID)
-                .verifications
-                .create({ to: `+91${userData.Mnumber}`, channel: 'sms' })
-                .then((data)=>{
+    //             response.status=true
+    //             response.mob=userData.Mnumber;
+    //             response.user=user
+    //             console.log("11111111111111")
+    //             client.verify.services(process.env.ServiceID)
+    //             .verifications
+    //             .create({ to: `+91${userData.Mnumber}`, channel: 'sms' })
+    //             .then((data)=>{
                   
                  
-                });
-                resolve(response)
-              }
-              else{
-                response.status=false;
-                resolve(response)
-              }
-             })
+    //             });
+    //             resolve(response)
+    //           }
+    //           else{
+    //             response.status=false;
+    //             resolve(response)
+    //           }
+    //          })
       
-          },
+    //       },
           
       
-          doOtpConfirm:(confirmotp,userData)=>{
-             return new Promise((resolve,reject)=>{
+    //       doOtpConfirm:(confirmotp,userData)=>{
+    //          return new Promise((resolve,reject)=>{
               
-              console.log(userData)
-              client.verify.services(process.env.ServiceID)
-              .verificationChecks
-              .create({
-                to:`+91${userData.number}`,
-                code:confirmotp.code
-              })
-    .then((data)=>{
-        if(data.status=='approved'){
+    //           console.log(userData)
+    //           client.verify.services(process.env.ServiceID)
+    //           .verificationChecks
+    //           .create({
+    //             to:`+91${userData.number}`,
+    //             code:confirmotp.code
+    //           })
+    // .then((data)=>{
+    //     if(data.status=='approved'){
 
-                  resolve({status:true})
-                }else{
-                  resolve({status:false})
-                }
-              })
-             })
-          },
+    //               resolve({status:true})
+    //             }else{
+    //               resolve({status:false})
+    //             }
+    //           })
+    //          })
+    //       },
+
           updateUser: (userId, userDetails) => {
             console.log(userId,userDetails);
             return new Promise((resolve, reject) => {

@@ -23,7 +23,7 @@ router.get('/index',loginpage);
 router.get('/login',signup);
 router.get('/signup',signin)
 router.post('/signup',signIn)
-router.get('/otpLogin',otpLogin)
+// router.get('/otpLogin',otpLogin)
 router.post('/login',loggedin)
 router.get('/logout',logOut)
 router.get('/productdetails/',verifyLogin,pdetails)
@@ -38,9 +38,9 @@ router.get('/viewOrders',verifyLogin,ViewOrder);
 router.get('/viewOrderProducts',ViewOrderedProduct);
 router.post('/deleteProduct',cancelProduct);
 router.post('/verifyPayment',verifyPayment)
-router.post('/otpLogin',confirmOtp)
-router.get('/confirmOtp',checkOtp)
-router.post('/confirmOtpIn',postConfirmOtp)
+// router.post('/otpLogin',confirmOtp)
+// router.get('/confirmOtp',checkOtp)
+// router.post('/confirmOtpIn',postConfirmOtp)
 router.get('/userProfile',verifyLogin,UserProfile);
 router.post('/addAddress/:id',addAddress);
 router.get('/editAddress/',verifyLogin,editOrderAddress)

@@ -168,8 +168,8 @@ module.exports = {
         }
       }
     ]).toArray()
-    resolve(totalSaleAmount[0].totalAmount)
-    console.log(totalSaleAmount[0].totalAmount);
+    resolve(totalSaleAmount[0]?.totalAmount)
+    console.log(totalSaleAmount[0]?.totalAmount);
     })
   },
   getUserCount:()=>{

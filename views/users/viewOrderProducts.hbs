@@ -50,7 +50,7 @@
                             
                             
                             {{#ifEquals this.status 'placed'}}
-							<button class="button-24" onclick="setOrderedProductStatus('cancel','{{this._id}}','{{this.item}}')">CANCEL</button>
+							<button class="button-24" onclick="setOrderedProductStatus('cancel','{{../this._id}}','{{../this.item}}')">CANCEL</button>
 							{{/ifEquals }}
 							{{#ifEquals this.status 'cancel'}}
 							<p>Cancelled</p>
