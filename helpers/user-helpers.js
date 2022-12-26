@@ -331,7 +331,8 @@ let orderObj = {
     totalAmount : totalPrice, 
     status:status,
 
-    date: new Date().toJSON().slice(0,10)
+    date: new Date().toJSON().slice(0,10),
+    month:new Date().toJSON().slice(0,7)
    
 
 
@@ -370,7 +371,6 @@ db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((respo
            })
      },
      deleteProductIn:(details)=>{
-        
        return new Promise((resolve,reject)=>{
         db.get().collection(collection.ORDER_COLLECTION)
                 .updateOne({_id:objectId(details.order)},
@@ -771,7 +771,8 @@ instance.orders.create(options, function(err, order) {
                     await db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderDetails.orderId),"products.item":objectId(orderDetails.productId)},
                     {
                         $set:{
-                            "status":orderDetails.status
+                            "status":orderDetails.status,
+                            "products.$.status":orderDetails.status
                         }
                     }).then(async()=>{
                         let value2 = parseInt(orderDetails.productPrice);
@@ -793,6 +794,7 @@ instance.orders.create(options, function(err, order) {
                  db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId),"products.item":objectId(productId)},
                  {
                    $set:{
+                    "status":status,
                      "products.$.status":status,
                      
                    }

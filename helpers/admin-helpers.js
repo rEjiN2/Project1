@@ -89,7 +89,7 @@ module.exports = {
         db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId),"products.item":objectId(productId)},
         {
           $set:{
-            // "status":status,
+            "status":status,
             // "cancelled":false,
             // "delivered":true,
             "products.$.status":status,
@@ -100,12 +100,15 @@ module.exports = {
         })
       }
       else if(status == 'Shipped'){
-        db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId),userId:objectId(userId)},
+        db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId),"products.item":objectId(productId)},
         {
           $set:{
             "status":status,
             "cancelled":false,
-            "delivered":true
+            "delivered":true,
+            "products.$.status":status,
+            "products.$.cancelled":false,
+            "products.$.delivered":true
           }
         })
       }
@@ -344,7 +347,7 @@ return new Promise(async(resolve,reject)=>{
     return new Promise(async(resolve,reject)=>{
       let monthlyReport=await db.get().collection(collection.ORDER_COLLECTION).aggregate([
         {
-          $match: { orderMonth:month} 
+          $match: { month:{$eq:month}} 
         },
         
        {
@@ -352,7 +355,7 @@ return new Promise(async(resolve,reject)=>{
           _id:0,
           totalAmount:1,
           products:1,
-          date:1
+          month:1
         }
        },
        {
@@ -368,6 +371,61 @@ return new Promise(async(resolve,reject)=>{
        }, 
       ]).toArray();
       resolve(monthlyReport)
+      console.log(monthlyReport,"huhuhuhuhuhuhuhhuhuuh");
+    })
+  },
+  getDailySalesGraph:()=>{
+    return new Promise(async(resolve,reject)=>{
+        let sales=await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+          {
+            $project: { date: 1, totalAmount: 1 }
+        },
+         
+          {
+            $group:{
+              _id:  ("$date".slice(0,7)),
+              totalAmount: { $sum: '$totalAmount' },
+              count: { $sum: 1 }
+            }
+          },
+          {
+            $sort:{
+              _id:1
+            }
+          },
+          {
+            $limit:7
+          }
+        ]).toArray()
+        resolve(sales)
+       console.log(sales)
+    })
+  },
+  getMonthlySalesGraph:()=>{
+    return new Promise(async(resolve,reject)=>{
+      let sales=await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+        {
+          $project: { month: 1, totalAmount: 1 }
+      },
+       
+        {
+          $group:{
+            _id: "$month",
+            totalAmount: { $sum: '$totalAmount' },
+            count: { $sum: 1 }
+          }
+        },
+        {
+          $sort:{
+            _id: 1
+          }
+        },
+        {
+          $limit:7
+        }
+      ]).toArray()
+      resolve(sales)
+      console.log(sales);
     })
   }
 }

@@ -52,9 +52,11 @@ let userCount = await adminHelper.getUserCount()
  let todayEarnings = await adminHelper.getTodayEarnings()
   let todayOrder = await adminHelper.getTodayOrder()
   let productSold = await adminHelper.getProductSold()
+  let daily=await adminHelper.getDailySalesGraph();
+  let monthly=await adminHelper.getMonthlySalesGraph();
   let date = new Date().toJSON().slice(0,10)
   console.log(todayOrder);
-            res.render('admin/index', { layout: 'adminLayout',codCount,productSold,date,todayEarnings,razorPayCount,orderCount,payLaterCount,totalSale,payPalCount,userCount,todayOrder})
+            res.render('admin/index', { layout: 'adminLayout',codCount,daily,monthly,productSold,date,todayEarnings,razorPayCount,orderCount,payLaterCount,totalSale,payPalCount,userCount,todayOrder})
         })
        
     },

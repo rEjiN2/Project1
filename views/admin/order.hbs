@@ -20,12 +20,10 @@
                 <thead>
                   <tr>
                     <th>Name</th>
-            <th>Date</th>						
-            <th>Status</th>						
+            <th>Date</th>											
 						<th> Amount</th>
             <th>Payment</th>
 						<th>Products</th>
-            <th>Options</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -34,31 +32,10 @@
                             
                             <td>{{this.deliveryDetails.name}}</td>
                             <td>{{this.date}}</td>
-                            <td>{{this.status}}</td>
                             <td>{{this.totalAmount}}</td>
                             <td>{{this.paymentMethod}}</td>
                             <td><a href='/admin/viewOrder?id={{this._id}}' class="btn btn-primary">View </a></td>
-                            <td>  <select  onchange="deliveryStatusUpdate(value,'{{this._id}}','{{this.userId}}')">
-                <option value="{{this.status}}" selected>
-                    {{this.status}}
-                  </option
-                 {{#ifEquals this.status 'placed'}}
-                    <option value="Shipped">Shipped</option>
-                    <option value="Delivered">Delivered</option>
-                    <option value="Cancelled">Cancelled</option>
-                     <option value="Shipped">Shipped</option>
-                 {{/ifEquals}}
-                 {{#ifEquals this.status 'Delivered'}}
-                 {{/ifEquals}}
-                  {{#ifEquals this.status 'Cancelled'}}
-                 {{/ifEquals}}
-                 {{#ifEquals this.status 'Shipped'}}
-                   <option value="Delivered">Delivered</option>
-                   <option value="Cancelled">Cancelled</option>
-                   <option value="Delivered">Delivered</option>
-                 {{/ifEquals}}
 
-                </select></td>
                           </tr>
                           {{/each}}
                 </tbody>

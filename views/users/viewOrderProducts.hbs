@@ -57,7 +57,7 @@
 							{{/ifEquals }}
 							{{#ifEquals this.status 'Delivered'}}
 							<button class="button-24"
-								onclick="returnOrder('Returned','{{this._id}}','{{this.item}}','{{this.product.price}}','{{this.quantity}}')">Return
+								onclick="returnOrder('Returned','{{../this._id}}','{{../this.item}}','{{../this.product.price}}','{{../this.quantity}}')">Return
 								Order</button>
 							{{/ifEquals}}
 							{{#ifEquals this.status 'shipped'}}
@@ -101,5 +101,30 @@
 					location.reload();
 				}
 			})
+		}
+	</script>
+
+	<script type="text/javascript">
+
+		function returnOrder(value, orderId, productId, productPrice, productQuantity) {
+			
+				
+					$.ajax({
+						url: '/returnProduct',
+						method: 'post',
+						data: {
+							status: value,
+							orderId: orderId,
+							productId: productId,
+							productPrice: productPrice,
+							productQuantity: productQuantity
+						},
+						success: (response) => {
+							location.reload();
+						}
+					})
+			
+			
+
 		}
 	</script>
