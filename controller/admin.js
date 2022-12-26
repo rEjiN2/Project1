@@ -53,7 +53,9 @@ let userCount = await adminHelper.getUserCount()
   let todayOrder = await adminHelper.getTodayOrder()
   let productSold = await adminHelper.getProductSold()
   let daily=await adminHelper.getDailySalesGraph();
+  console.log(daily);
   let monthly=await adminHelper.getMonthlySalesGraph();
+  console.log(monthly);
   let date = new Date().toJSON().slice(0,10)
   console.log(todayOrder);
             res.render('admin/index', { layout: 'adminLayout',codCount,daily,monthly,productSold,date,todayEarnings,razorPayCount,orderCount,payLaterCount,totalSale,payPalCount,userCount,todayOrder})
