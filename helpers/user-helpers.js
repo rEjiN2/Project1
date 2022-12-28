@@ -310,7 +310,7 @@ console.log(wishItems,"sssssssssssssssssssssssssssssssssssssssssss");
             resolve(total[0]?.total)
         })
      },
-     placeOrderIn:(order,products,totalPrice)=>{
+     placeOrderIn:(order,products,totalPrice,discount,percentage)=>{
          return new Promise(async(resolve,reject)=>{
     let status=order.paymentMethod=='COD'|| 'PAYLATER' ? 'placed':'pending'
     products.forEach(products => {
@@ -327,7 +327,8 @@ let orderObj = {
     userId:objectId(order.userId),
     paymentMethod : order.paymentMethod,
     products : products,
-    
+    discount : discount,
+percentage:percentage,
     totalAmount : totalPrice, 
     status:status,
 
@@ -674,6 +675,7 @@ instance.orders.create(options, function(err, order) {
                       }  
                     })
                     resolve(response)
+                    console.log(response,"HUHUHUHUHUHUHUH");
                   }
                 })
               },

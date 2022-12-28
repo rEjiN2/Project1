@@ -211,6 +211,7 @@ catch{
     console.log(req.body.coupon,"3255555555555555555555")
 
     if(verifyCoupon.name == req.body.coupon){
+      let percentage = verifyCoupon.couponPercentage;
 
         let discountAmount=(totalPrice * parseInt(verifyCoupon.couponPercentage))/100;
         
@@ -220,7 +221,7 @@ catch{
         console.log(discountAmount,"thi is dicsount++++++++++++++++++++++++")
             console.log(amount,"this is original--------------- ")
             console.log(req.body,"55555555555555555555555");
-   await userHelpers.placeOrderIn(req.body,products,amount).then((orderId)=>{
+   await userHelpers.placeOrderIn(req.body,products,amount,discountAmount,percentage).then((orderId)=>{
      
       if(req.body['paymentMethod']==='COD') { 
       res.json({codSuccess:true,products}) 
@@ -580,6 +581,7 @@ catch{
           let amount = totalAmount - discountAmount
           couponres.discountAmount = Math.round(discountAmount)
           couponres.amount = Math.round(amount);
+          couponres.percentage=Math.round(couponres.couponData.couponPercentage);
           console.log(couponres,"HIMONUTTA");
           res.json(couponres)
   

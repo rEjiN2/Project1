@@ -96,7 +96,8 @@
                             <li><span>{{this.product.title}}</span><span>{{this.quantity}}</span> <span>₹ {{this.product.price}}</span></li>
                             {{/each}}
                             <li><span>Coupon</span>&nbsp;<span><input type="text" id="couponName" name = "coupon" class="form-control form-control-lg"/></span>&nbsp;<button class="flex-c-m stext-101 size-118 bg8 bor13 hov-btn3 trans-04 pointer btn btn-info  " id="applyCouponBtn" onclick="applyCoupon(event)">Apply Coupon</button></li>
-                           
+                           <li><span>Discount Percentage</span>  <span id="percentage" >  %</span></li>
+                           <li><span>Discount </span> <span id="discount"> 0</span></li>
                             <li><span>Subtotal</span> <span id="total">₹ {{total}}</span></li>
                             <li><span>Shipping</span> <span>Free Delivery</span></li>
                             <li><span>Total</span> <span id="totalItem">₹ {{total}}</span></li>
@@ -264,10 +265,10 @@ console.log('chackoutform')
     success:(response)=>{
       if(response.verify){
         console.log("hey hey hey")
-       // document.getElementById('discount').innerHTML="₹ "+response.discountAmount
+        document.getElementById('discount').innerHTML="₹ "+response.discountAmount
         document.getElementById('totalItem').innerHTML= "₹ "+response.amount
         document.getElementById('total').innerHTML= "₹ "+response.amount
-      //  document.getElementById('percentage').innerHTML=response.couponData.couponPercentage+'%'
+        document.getElementById('percentage').innerHTML=response.couponData.couponPercentage+'%'
         //document.getElementById('error').innerHTML = ''
        // document.getElementById('error2').innerHTML = '(Coupon has Applied)'
         document.getElementById("applyCouponBtn").hidden = true;
@@ -275,10 +276,10 @@ console.log('chackoutform')
       }
       else{
           console.log("hoy hoy hohy")
-      //  document.getElementById('discount').innerHTML= "₹ " +0
+        document.getElementById('discount').innerHTML= "₹ " +0
         document.getElementById('total').innerHTML= "₹ "+response.Total
         document.getElementById('totalItem').innerHTML= "₹"+response.Total
-     //   document.getElementById('percentage').innerHTML= 0 + "%"
+        document.getElementById('percentage').innerHTML= 0 + "%"
 
         if(response.used){
         
