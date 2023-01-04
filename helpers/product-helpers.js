@@ -41,7 +41,7 @@ db.get().collection(collection.CATEGORY_COLLECTION).findOne({_id: objectId(catId
                     brand: proDetails.brand,
                     price: proDetails.price,
                     gender: proDetails.gender,
-                    stock:proDetails.stock,
+                    stock:parseInt(proDetails.stock),
                     description: proDetails.description
                     // image:proDetails.image[0]
                    
